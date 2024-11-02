@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+            grid-auto-rows: 1fr;
+            gap: 10px;
+
+        }
+
+        .container img {
+            width: 200px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .card {
+            background-color: #dff2eb;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .card .gravity-info {
+            background-color: #4a628a;
+            width: 100%;
+            border-radius: 20px;
+            padding: 10px;
+            color: white;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="gravity-img">
+                <img src="./dipper.png" alt="">
+            </div>
+            <div class="gravity-info">
+                <h2>Dipper</h2>
+                <h3>Обо мне</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, inventore!</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="gravity-img">
+                <img src="./mable.png" alt="">
+            </div>
+            <div class="gravity-info">
+                <h2>Mable</h2>
+                <h3>Обо мне</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, inventore!</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="gravity-img">
+                <img src="./stan.png" alt="">
+            </div>
+            <div class="gravity-info">
+                <h2>Stan</h2>
+                <h3>Обо мне</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, inventore!</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="gravity-img">
+                <img src="./wendy.png" alt="">
+            </div>
+            <div class="gravity-info">
+                <h2>Wendy</h2>
+                <h3>Обо мне</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, inventore!</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
