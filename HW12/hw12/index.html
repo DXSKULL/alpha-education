@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW12</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div class="box-container">
+        <div class="box-container__figure">
+            <span class="box-container__figure-text"></span>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="controls__figure">
+            <p class="controls__figure-text">Выбрать фигуру</p>
+            <div class="controls-btns">
+                <button class="btn-round">Круг</button>
+                <button class="btn-square">Квадрат</button>
+            </div>
+        </div>
+
+        <div class="controls__figure">
+            <p class="controls__figure-text">Выбрать цвет</p>
+            <div class="controls-btns">
+                <button class="btn-color" name="red">Красный</button>
+                <button class="btn-color" name="yellow">Желтый</button>
+                <button class="btn-color" name="green">Зеленый</button>
+                <button class="btn-color" name="blue">Синий</button>
+
+            </div>
+        </div>
+
+        <div class="controls__figure">
+            <p class="controls__figure-text">Напишите текст</p>
+            <form class="inside-text">
+                <div class="controls-btns">
+                    <input class="text-input" type="text" placeholder="Текст"/>
+                    <button class="btn-add">Добавить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <button class="clear">Clear</button>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
