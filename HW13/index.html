@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивный веб-продукт</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            margin: 0; 
+            padding: 20px; 
+            background-color: #f4f4f4;
+        }
+        .hidden { display: none; }
+        .modal { 
+            position: fixed; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            background: white; 
+            padding: 20px; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+            border-radius: 10px;
+        }
+        .slider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            max-width: 320px;
+        }
+        .slider img { 
+            width: 300px; 
+            height: 200px; 
+            display: none; 
+            border-radius: 10px;
+        }
+        .slider img.active { display: block; }
+        .error { color: red; display: block; margin-top: 5px; }
+        form {
+            background: white;
+            padding: 20px;
+            max-width: 320px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Мой цифровой продукт</h1>
+    
+    <button id="openModal">Открыть модальное окно</button>
+    <div id="modal" class="modal hidden">
+        <p>Это модальное окно!</p>
+        <button id="closeModal">Закрыть</button>
+    </div>
+    
+    <div class="slider">
+        <button id="prev">◀</button>
+        <img src="https://placehold.in/400.jpeg" class="active">
+        <img src="https://placehold.in/200.jpeg">
+        <img src="https://placehold.in/300.jpeg">
+        <button id="next">▶</button>
+    </div>
+    
+    <form id="myForm">
+        <input type="email" id="email" placeholder="Введите email">
+        <span class="error" id="emailError"></span>
+        <input type="password" id="password" placeholder="Введите пароль">
+        <span class="error" id="passwordError"></span>
+        <button type="submit">Отправить</button>
+    </form>
+    
+    <script>
+        document.getElementById("openModal").addEventListener("click", function() {
+            document.getElementById("modal").classList.remove("hidden");
+        });
+        document.getElementById("closeModal").addEventListener("click", function() {
+            document.getElementById("modal").classList.add("hidden");
+        });
+
+        let index = 0;
+        const images = document.querySelectorAll(".slider img");
+        document.getElementById("next").addEventListener("click", function() {
+            images[index].classList.remove("active");
+            index = (index + 1) % images.length;
+            images[index].classList.add("active");
+        });
+        document.getElementById("prev").addEventListener("click", function() {
+            images[index].classList.remove("active");
+            index = (index - 1 + images.length) % images.length;
+            images[index].classList.add("active");
+        });
+
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let valid = true;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const emailError = document.getElementById("emailError");
+            const passwordError = document.getElementById("passwordError");
+            
+            emailError.textContent = "";
+            passwordError.textContent = "";
+            
+            if (!email.includes("@")) {
+                emailError.textContent = "Неверный email";
+                valid = false;
+            }
+            if (password.length < 6) {
+                passwordError.textContent = "Пароль должен быть не менее 6 символов";
+                valid = false;
+            }
+            if (valid) {
+                alert("Форма отправлена успешно!");
+            }
+        });
+    </script>
+</body>
+</html>

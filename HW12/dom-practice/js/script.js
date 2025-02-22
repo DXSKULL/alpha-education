@@ -1,37 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     // //////////////////////////////////////////////////// 1
-    const books = [
-        {
-            title: "Python для анализа данных, 3-е издание",
-            price: "$34.96",
-            image: "https://itbook.store/img/books/9781098104030.png",
-            url: "https://itbook.store/books/9781098104030"
-        },
-        {
-            title: "Проектирование программ на С++",
-            price: "$48.99",
-            image: "https://itbook.store/img/books/9781098113162.png",
-            url: "https://itbook.store/books/9781098113162"
-        },
-        {
-            title: "Руководство по Flutter и Dart",
-            price: "$42.99",
-            image: "https://itbook.store/img/books/9781098119515.png",
-            url: "https://itbook.store/books/9781098119515"
-        },
-        {
-            title: "Справочник по Raspberry Pi",
-            price: "$14.99",
-            image: "https://itbook.store/img/books/9781098130923.png",
-            url: "https://itbook.store/books/9781098130923"
-        }
-    ];
-
-    const booksWrapper = document.querySelector('.books')
-    let html = ''
-    for (let book of books) {
-        html +=
-            `
+    function renderBooks(books) {
+        const booksWrapper = document.querySelector('.books')
+        let html = ''
+        for (let book of books) {
+            html +=
+                `
          <a href="${book.url}" class="books-item">
           <div class="books-img">
             <img src="${book.image}" alt="">
@@ -42,8 +16,30 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </a>
         `
+        }
+        booksWrapper.innerHTML = html
     }
-    booksWrapper.innerHTML = html
+
+    const loader = document.querySelector('.loader')
+    const loaderContainer = document.querySelector('.loader__container')
+    async function fetchBooks() {
+        try {
+            const response = await fetch('https://api.itbook.store/1.0/new')
+            const data = await response.json()
+            const books = data.books.slice(0, 4)
+            renderBooks(books)
+        } catch (error) {
+            console.log('Error:', error)
+            loaderContainer.textContent = 'Ошибка!'
+        } finally {
+            loader.style.display = 'none'
+        }
+    }
+
+    fetchBooks()
+
+    
+
 
     // //////////////////////////////////////////////////// 2
     const testimonials = document.querySelector('.testimonials')
@@ -98,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    supportForm.addEventListener('submit', (e)=> {
+    supportForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const nameIsValid = validateInput(inputName, 'Имя')
         const emailIsValid = validateInput(inputEmail, 'Почта')
