@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+
+<h1><%= book.title %></h1>
+<img src="<%= book.image %>" alt="<%= book.title %>" width="150">
+<p><strong>Автор:</strong> <%= book.authors %></p>
+<p><strong>Цена:</strong> <%= book.price %></p>
+<p><strong>Рейтинг:</strong> <%= book.rating %></p>
+<p><strong>Описание:</strong> <%= book.desc %></p>
+
+<a href="/books">Назад к списку</a>
+
+<%- include('../partials/footer') %>

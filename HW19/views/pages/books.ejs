@@ -1,0 +1,15 @@
+<%- include('../partials/header') %>
+
+<h1>Список новых книг</h1>
+<ul>
+  <% books.forEach(book => { %>
+    <li>
+      <a href="/books/<%= book.isbn13 %>">
+        <img src="<%= book.image %>" alt="<%= book.title %>" width="100">
+        <strong><%= book.title %></strong>
+      </a>
+    </li>
+  <% }) %>
+</ul>
+
+<%- include('../partials/footer') %>
