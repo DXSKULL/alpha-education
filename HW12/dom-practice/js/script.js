@@ -52,6 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let sliderIndex = 0
     const testimonialsWidth = testimonials.offsetWidth //800
 
+    let intervalTimer
+
     function moveSlider(sliderIndex) {
         testimonialsContainer.style.marginLeft = `-${sliderIndex * testimonialsWidth}px`
     }
@@ -60,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (sliderIndex !== testimonialsItems.length - 1) {
             sliderIndex++
             moveSlider(sliderIndex)
+            resetAutoSlide()
         }
 
     }
@@ -68,9 +71,29 @@ document.addEventListener('DOMContentLoaded', () => {
         if (sliderIndex !== 0) {
             sliderIndex--
             moveSlider(sliderIndex)
+            resetAutoSlide()
         }
 
     }
+
+    function interval() {
+        intervalTimer = setInterval(() => {
+            if (sliderIndex < testimonialsItems.length - 1) {
+                sliderIndex++   
+            } else {
+                sliderIndex = 0
+            }
+            moveSlider(sliderIndex)
+        }, 5000)
+    }
+
+    function resetAutoSlide() {
+        clearInterval(intervalTimer)
+        interval()
+    }
+
+    interval()
+    
 
     testimonialsLeftBtn.addEventListener('click', moveLeft)
     testimonialsRightBtn.addEventListener('click', moveRight)
