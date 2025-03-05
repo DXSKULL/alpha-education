@@ -1,21 +1,12 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Users from "./pages/Users";
-import UserDetail from "./pages/UserDetail";
-import NotFound from "./pages/NotFound";
+import AppRouter from "./components/core/AppRouter";
+import Layout from "./components/core/Layout";
 
-const App = () => {
+function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="/users/:id" element={<UserDetail />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+    <Layout>
+      <AppRouter />
+    </Layout>
   );
-};
+}
 
 export default App;

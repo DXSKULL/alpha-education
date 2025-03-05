@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
-const Post = ({postText, postImage, postAuthor, postAuthorPic, postTags, isLastPost}) => {
-
-    const [isLiked, setIsLiked] = useState(false)
+const Post = ({postText, postImage, postAuthor, postAuthorPic, postTags, isLastPost, isLiked, setIsLiked}) => {
 
     function handleClick() {
         setIsLiked(!isLiked)

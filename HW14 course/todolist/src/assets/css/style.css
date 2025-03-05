@@ -184,6 +184,10 @@ body {
   gap: 12px;
 }
 
+.form-hidden {
+  visibility: hidden;
+}
+
 .form-input {
   width: 360px;
   height: 48px;

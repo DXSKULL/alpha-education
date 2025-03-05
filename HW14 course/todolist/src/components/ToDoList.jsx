@@ -1,31 +1,17 @@
 import React from "react";
 import ToDoItem from "./ToDoItem";
 
-const ToDoList = () => {
-  const tasks = [
-    {
-      name: "Дописать статью",
-      isCompleted: false,
-    },
-    {
-      name: "Скачать сериал",
-      isCompleted: true,
-    },
-    {
-      name: "Прочитать 3 главу книги",
-      isCompleted: true,
-    },
-    {
-      name: "Приготовить ужин",
-      isCompleted: false,
-    },
-  ];
+const ToDoList = ({ tasks, toggleTaskCompletion, deleteTask }) => {
   return (
     <ul className="todo-list">
-      <ToDoItem title="Finish project" isCompleted={false} />
-
       {tasks.map((task) => (
-        <ToDoItem title={task.name} isCompleted={task.isCompleted} />
+        <ToDoItem
+          toggleTaskCompletion={toggleTaskCompletion}
+          title={task.name}
+          isCompleted={task.isCompleted}
+          deleteTask={deleteTask}
+          key={task.name}
+        />
       ))}
     </ul>
   );

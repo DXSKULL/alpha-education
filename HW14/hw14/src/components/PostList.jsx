@@ -83,16 +83,9 @@ const posts = [
   },
 ];
 
-const PostList = () => {
+const PostList = ({ isLiked, setIsLiked }) => {
   let isLastPost = false;
 
-  const [isLiked, setIsLiked] = useState(false)
-
-  function handleClick() {
-      setIsLiked(!isLiked)
-  }
-
-  
   return (
     <div className="post-list">
       {posts.map((post) => (
@@ -105,6 +98,8 @@ const PostList = () => {
             postAuthorPic={post.profilePicture}
             postTags={post.tags}
             isLastPost={isLastPost}
+            isLiked={isLiked}
+            setIsLiked={setIsLiked}
           />
         </>
       ))}

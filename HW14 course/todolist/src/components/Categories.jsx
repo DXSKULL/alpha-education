@@ -1,13 +1,21 @@
-import React from 'react';
+import React from "react";
+import CategoriesItem from "./CategoriesItem";
 
-const Categories = () => {
-    return (
-        <ul className="todo-categories">
-            <li className="todo-categories-btn todo-categories-btn__active">Все</li>
-            <li className="todo-categories-btn">Завершенные</li>
-            <li className="todo-categories-btn">Не завершенные</li>
-          </ul>
-    );
+const Categories = ({categories, activeCategory, setActiveCategory}) => {
+
+  return (
+    <ul className="todo-categories">
+      {categories.map((item, i) => (
+        <CategoriesItem
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
+          index={i}
+          text={item}
+          key={item}
+        />
+      ))}
+    </ul>
+  );
 };
 
 export default Categories;
