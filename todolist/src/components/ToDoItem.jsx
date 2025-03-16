@@ -1,10 +1,14 @@
 import React from "react";
 import { FaTrashAlt } from "react-icons/fa";
 
+import classNames from "classnames"
 const ToDoItem = ({ isCompleted, title, toggleTaskCompletion, deleteTask }) => {
-  const classStyle = isCompleted ? "todo todo__completed" : "todo";
+  // const classStyle = isCompleted ? "todo todo__completed" : "todo";
   return (
-    <li className={classStyle}>
+    <li className={classNames("todo", {
+      "todo__completed": isCompleted
+    })}>
+      
       <span className="todo-border"></span>
       <div className="todo-part">
         <div

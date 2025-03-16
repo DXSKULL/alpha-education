@@ -1,10 +1,11 @@
-export const ACCESS_TOKEN = "BQDWTfWmXF6ivqNmDzeE23dFDEA2dMywv6CbqwyewTP5iNCoJ06bTWaZ8nUnrgZyAfRwSMLI_eQh126dHtbmEd_5f92LmeCkogYwQ-Kh2arlRbUN3-0BAgHwUMVBkECOXSeonmhb-lQ"
 
 export const ROUTES = {
     TOP_ALBUMS_PAGE: "/",
     ARTISTS_PAGE: "/artists",
     SETTINGS_PAGE: "/settings",
     ALBUMS_PAGE: "/albums/:id",
+    SINGLE_ARTIST_PAGE: "/artists/:id",
+    SEARCH_PAGE: "/search"
 }
 
 export const albumLinks = [

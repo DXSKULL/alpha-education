@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #c4c3c3;
+}
+
+.counter-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 10px;
+}
+
+.counter {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    height: 150px;
+}
+
+.counter__num {
+    margin: 0;
+    background: green;
+    padding: 10px;
+    color: #fff;
+}
+
+.counter__btn {
+    font-size: 20px;
+    background-color: #000;
+    color: #fff;
+    padding: 5px;
+    cursor: pointer;
+}

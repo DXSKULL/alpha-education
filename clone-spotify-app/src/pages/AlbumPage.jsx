@@ -1,36 +1,26 @@
-import { MdNumbers } from "react-icons/md";
-import { FaRegClock } from "react-icons/fa";
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { ACCESS_TOKEN } from "../utils/consts";
-import { convertMsToTime } from "../utils/utils";
+import { FaRegClock } from "react-icons/fa";
+import { MdNumbers } from "react-icons/md";
+import { useParams } from "react-router-dom";
 import Loader from "../components/shared/Loader";
 import TrackItem from "../components/tracks/TrackItem";
+import { axiosInstance } from "../services/axios";
 
 export default function AlbumPage() {
+  const { id } = useParams();
   const [albumData, setAlbumData] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [albumTracks, setAlbumTracks] = useState([]);
-  const { id } = useParams();
 
   useEffect(() => {
     async function fetchAlbumData() {
       try {
         setLoading(true);
-        const response = await fetch(
-          `https://api.spotify.com/v1/albums/${id}?market=KZ`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${ACCESS_TOKEN}`,
-            },
-          }
-        );
-        const data = await response.json();
+        const res = await axiosInstance.get(`/albums/${id}?market=KZ`);
         // console.log(data);
-        setAlbumData(data);
-        setAlbumTracks(data.tracks.items);
-        console.log("Tracks.items: ", data.tracks.items);
+        setAlbumData(res.data);
+        setAlbumTracks(res.data.tracks.items);
+        // console.log("Tracks.items: ", data.tracks.items);
       } catch (error) {
         console.log("Error: ", error);
       } finally {
@@ -48,18 +38,27 @@ export default function AlbumPage() {
         ) : (
           <>
             <div className="album-header">
-              <img
-                src="https://placehold.co/360/1ed760/000000/png"
-                alt=""
-                className="album-img"
-              />
+              {albumData.images && albumData.images[0]?.url && (
+                <img
+                  src={albumData.images[0].url}
+                  alt={albumData.name}
+                  className="album-img"
+                />
+              )}
               <div className="album-content">
                 <p className="album-content__type">Альбом</p>
                 <h1 className="album-content__name">{albumData.name}</h1>
                 <div className="album-content__author">
-                  <span>Имя исполнителя</span>
+                  {albumData.artists && (
+                    <span>
+                      {albumData.artists.map((item) => `${item.name} `)}
+                    </span>
+                  )}
                   <div className="album-content__circle"></div>
-                  <p>{albumData.release_date}</p>
+                  <p>
+                    {albumData.release_date &&
+                      albumData.release_date.substring(0, 4)}
+                  </p>
                   <div className="album-content__circle"></div>
                   <p>{albumData.total_tracks} треков, 42 мин. 31 сек.</p>
                 </div>
@@ -81,8 +80,8 @@ export default function AlbumPage() {
                     key={track.id}
                     trackName={track.name}
                     trackIndex={index}
-                    trackAuthor={track.artists[0].name}
-                    trackDuration={convertMsToTime(track.duration_ms)}
+                    trackAuthor={track.artists && track.artists}
+                    trackDuration={track.duration_ms}
                   />
                 ))}
               </div>

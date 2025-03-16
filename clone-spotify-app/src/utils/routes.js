@@ -4,6 +4,8 @@ import TopArtistsPage from "../pages/TopArtistsPage";
 import SettingsPage from "../pages/SettingsPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import AlbumPage from "../pages/AlbumPage";
+import ArtistPage from "../pages/ArtistPage";
+import SearchPage from "../pages/SearchPage";
 
 export const routes = [
     {
@@ -21,6 +23,14 @@ export const routes = [
     {
         path: ROUTES.ALBUMS_PAGE,
         element: AlbumPage
+    },
+    {
+        path: ROUTES.SINGLE_ARTIST_PAGE,
+        element: ArtistPage
+    },
+    {
+        path: ROUTES.SEARCH_PAGE,
+        element: SearchPage
     },
     {
         path: "*",

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { albumLinks, ACCESS_TOKEN } from "../../utils/consts";
+import { albumLinks} from "../../utils/consts";
 import AlbumItem from "./AlbumItem";
 import Loader from "../shared/Loader";
 import Error from "../shared/Error";
+import { axiosInstance } from "../../services/axios";
 
 export default function AlbumList() {
   const [albums, setAlbums] = useState([]);
@@ -14,17 +15,15 @@ export default function AlbumList() {
       try {
         setLoading(true);
         const ids = albumLinks.join(",");
-        const response = await fetch(
-          `https://api.spotify.com/v1/albums?ids=${ids}&market=KZ`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${ACCESS_TOKEN}`,
-            },
-          }
-        );
-        const data = await response.json();
-        setAlbums(data.albums);
+        // const res = await axiosInstance.get(`/albums?ids=${ids}&market=KZ`);
+        const res = await axiosInstance.get(`/albums`, {
+          params: {
+            ids: ids,
+            market: "KZ",
+          },
+        });
+        console.log(res);
+        setAlbums(res.data.albums);
       } catch (error) {
         console.log("Error: ", error);
         setError(true);
